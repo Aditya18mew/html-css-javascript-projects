@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basketball scoreboard</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="fullbackground">
+<div class="timeclock">
+       <div class="timename">TIME</div>
+        <div class="actualtime"><p id="timer">00:00</p></div>
+</div>
+<div class="scoreclock">
+    <div class="homescore">
+        <div class="homename">HOME</div>
+        <div class="homeonscore" id="homescore">00</div>
+    </div>
+    <div class="middlescore">
+        <div class="middlename">QUATER</div>
+        <div class="middleonscore" id="quater">0</div>
+    </div>
+    <div class="guestscore">
+        <div class="guestname">VISITOR</div>
+        <div class="guestonscore" id="visitorscore">00</div>
+    </div>
+</div>
+    </div>
+
+<div class="score_management">
+    <div class="time_management">
+        <p>TIME CONTROL</p>
+        <input type="number" name="time" id="time" placeholder="in minutes">
+        <button id="setnewtime">set new time</button>
+        <button id="setprevioustime">set previous time</button>
+    </div>
+    <div class="start_timer">
+        <p>CLOCK CONTROL</p>
+        <button class="start" id="start">START</button>
+        <button class="stop" id="stop">STOP</button>
+        <button id="updatequater">update quater</button>
+    </div>
+    <div class="score_updater">
+     
+        <div class="homescoreupdate">
+            <p>HOME</p>
+           <button id="homeplusone">+1</button>
+           <button id="homeplustwo">+2</button>
+        </div>
+        <div class="visitorscoreupdate">
+            <p>VISITOR</p>
+            <button id="visitorplusone">+1</button>
+            <button id="visitorplustwo">+2</button>
+        </div>
+    </div>
+</div>
+
+<script src="timer.js"></script>
+<script src="score.js"></script>
+
+</body>
+</html>

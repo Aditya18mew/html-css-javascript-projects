@@ -1,0 +1,163 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --FS:1.25rem;
+    --HEADERFS:2rem;
+    --PADDING1:10px;
+}
+body{
+    font-size: 1.25rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 1.5;
+    background-color: rgb(250, 246, 246);
+   
+    
+}
+.nav{
+  
+    border: 2px solid black;
+    
+}
+.nav_header{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: var(--HEADERFS);
+   background-color: whitesmoke
+}
+
+.threerod{
+   display: flex;
+   flex-flow: column;
+   cursor: pointer;
+  
+}
+
+.threerod .bar {
+   background-color: black;
+    width: 25px;
+    height: 3px;
+    margin: 4px 0;
+   
+
+}
+
+.navlist{
+   
+display: none;
+    list-style-type: none;
+  padding: var(--PADDING1);
+
+  
+  
+ 
+    
+
+}
+
+.navlist :any-link{
+text-decoration: none;
+color: black;
+gap: 2px;
+opacity: 0.8;
+
+}
+.animate:hover{
+    opacity: .9;
+    animation: grow .5s ease-in-out forwards;
+    color: hsl(205, 78%, 60%);
+    background-color: hsl(205, 86%, 81%);
+    text-shadow: 1px 1px 2px rgba(59, 24, 164, 0.4);
+    
+   
+}
+
+
+@keyframes grow {
+    0%{
+        transform: scaleY(1);
+       
+    }
+80%{
+        transform: scaleY(1.2);
+       
+    }
+   100%{
+        transform: scaleY(1);
+        
+    }
+}
+
+
+
+.inputname, .inputemail{
+    padding: var(--PADDING1);
+    display: flex;
+    gap: 5px;
+    
+}
+.inputname input, .inputemail input{
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+   padding: 5px;
+    
+}
+.inputmessage {
+    padding: var(--PADDING1);
+    display: flex;
+    flex-flow: column;
+    gap: 6px;
+  
+}
+.inputmessage  textarea{
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+  
+}
+.inputmessage button{
+    width: 100px;
+    border: 1px solid black;
+    background-color: green;
+    height: 35px;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+  
+}
+.mydetails{
+    display: flex;
+    flex-flow: column;
+    padding: var(--PADDING1);
+   
+
+}
+.mydetails a {
+    text-decoration: none;
+    color: black;
+}
+.mydetails a:hover{
+    opacity: 0.6;
+}
+.about{
+   display: block;
+   margin: 8px;
+   unicode-bidi: isolate;
+}
+
+
+
+
+
+
+
+
+
+
+
