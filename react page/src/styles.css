@@ -1,0 +1,90 @@
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: #f1f5f8;
+    color: #222;
+}
+
+.booklist{
+width: 90vw;
+max-width: 1170px;
+margin: 5rem auto;
+display: grid;
+gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+    .booklist{
+        grid-template-columns: repeat(3,1fr);
+    }
+    .innerdiv{
+        text-wrap:wrap ;
+    }
+}
+.book{
+    background-color: white;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    text-align: center;
+   position: relative;
+    
+
+}
+
+header{
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    background-color: rgb(149, 215, 215);
+    padding: 1rem;
+    width: 15rem;
+    text-wrap: nowrap;
+    text-align: center;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+
+}
+
+.book img{
+    width: 20%;
+    object-fit: cover;
+}
+
+.book h2{
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+.book h4{
+    color: #617d98;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    letter-spacing: 2px;
+}
+.forminput{
+    margin: 1rem, 0;
+    border: 2px solid gray;
+}
+
+button{
+    border: 1px solid black;
+}
+.marknumber{
+  
+    position: absolute;
+    left: 5px;
+    top: 5px;
+   padding: 0.75rem;
+   margin: 2px;
+   font-size: 1rem;
+   border-top-left-radius: 1rem;
+   border-bottom-right-radius: 1rem;
+   background-color: palevioletred;
+   color: wheat;
+}
