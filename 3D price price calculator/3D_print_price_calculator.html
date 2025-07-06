@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Printing Cost Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        label, input { display: block; width: 100%; margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        canvas { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>3D Printing Cost Calculator</h2>
+        <label>Machine Cost ($): <input type="number" id="machineCost" value="500"></label>
+        <label>Material Cost per KG ($): <input type="number" id="materialCost" value="20"></label>
+        <label>Material Weight per Part (G): <input type="number" id="materialweight" value="50"></label>
+        <label>Print Time per Unit (hours): <input type="number" id="printTime" value="1"></label>
+        <label>Electricity Cost per kWh ($): <input type="number" id="electricityCost" value="0.17"></label>
+        <label>Power Consumption (kW): <input type="number" id="powerConsumption" value="0.18"></label>
+        <label>Labor Cost per Part ($, opt.): <input type="number" id="laborCost" value="0"></label>
+        <label>Markup (%, opt.): <input type="number" id="markup" value="0"></label>
+        <button onclick="calculateCost()">Calculate</button>
+        
+        <h3>Cost Breakdown</h3>
+        <table>
+            <thead>
+                <tr><th>Component</th><th>Cost per Part ($)</th></tr>
+            </thead>
+            <tbody id="costBreakdown"></tbody>
+        </table>
+        
+        <canvas id="costChart"></canvas>
+    </div>
+
+    <script>
+function calculateCost() {
+    const machineCost = parseFloat(document.getElementById('machineCost').value);
+    const materialCost = parseFloat(document.getElementById('materialCost').value);
+    const materialweight = parseFloat(document.getElementById('materialweight').value);
+    const printTime = parseFloat(document.getElementById('printTime').value);
+    const electricityCost = parseFloat(document.getElementById('electricityCost').value);
+    const powerConsumption = parseFloat(document.getElementById('powerConsumption').value);
+    const laborCost = parseFloat(document.getElementById('laborCost').value);
+    const markup = parseFloat(document.getElementById('markup').value) / 100;
+    
+    const numParts = 100;
+    let costs = [];
+    let breakdownTable = document.getElementById('costBreakdown');
+    breakdownTable.innerHTML = '';
+
+    for (let partsProduced = 1; partsProduced <= numParts; partsProduced++) {
+        let materialPerPart = (materialCost / 1000) * materialweight; // Fixed calculation
+        let electricityPerPart = printTime * powerConsumption * electricityCost;
+        let machinePerPart = machineCost / partsProduced;
+        let totalCostPerPart = materialPerPart + electricityPerPart + laborCost + machinePerPart;
+        let finalCost = totalCostPerPart * (1 + markup);
+        
+        if (partsProduced === 1) {
+            breakdownTable.innerHTML += `
+                <tr><td>Material Cost</td><td>$${materialPerPart.toFixed(2)}</td></tr>
+                <tr><td>Electricity Cost</td><td>$${electricityPerPart.toFixed(2)}</td></tr>
+                <tr><td>Labor Cost</td><td>$${laborCost.toFixed(2)}</td></tr>
+                <tr><td>Machine Cost Allocation</td><td>$${machinePerPart.toFixed(2)}</td></tr>
+                <tr><td>Total Cost</td><td>$${finalCost.toFixed(2)}</td></tr>
+            `;
+        }
+        costs.push(finalCost);
+    }
+    renderChart(costs);
+}
+
+        function renderChart(costs) {
+            const ctx = document.getElementById('costChart').getContext('2d');
+            if (window.costChartInstance) {
+                window.costChartInstance.destroy();
+            }
+            window.costChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 100}, (_, i) => i + 1),
+                    datasets: [{
+                        label: 'Cost per Part ($)',
+                        data: costs,
+                        borderColor: 'blue',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { title: { display: true, text: 'Number of Parts Produced' } },
+                        y: { title: { display: true, text: 'Cost per Part ($)' }, beginAtZero: false }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
